@@ -1,0 +1,108 @@
+mongodb, dá mais liberdade
+nosql
+
+duas partes
+apagar e criar, gerenciar, serviço
+do mongo, background (core da
+aplicação)
+
+pode ser visual
+
+pode estar rodando localmente ou em
+nuvem (servidor)
+
+instala o mongo na nossa máquina ou
+no servidor
+
+muitos dados
+
+devOps - solucionar problemas de
+troca de dados da máquina
+
+shell mongo
+
+comandos, só pra mostrar alguns
+db, show dbs, use blog,
+show collections, db.posts.find()
+
+terceira maneira é a interação com
+node
+
+Aula 1
+
+fazer download do mongodb (já feito)
+se tiver mac, só instalar pelo brew
+
+depois só por pra rodar o mongodb
+e depois conectar pelo shell
+
+inicializar o serviço e o mongo shell
+
+abrir o shell
+"C:\Programs Files\MongoDb\Server\4.2\bin\mongo.exe"
+
+show dbs
+summary e inicializar
+
+como instala a interface gráfica
+só instalar o compass
+
+new connection
+port 27017, padrão
+pode fazer uma autenticação, mas não
+precisa
+
+MongoLocal
+
+iniciar serv e shell
+baixar o compass
+
+db.test (existe sem existir)
+db.createCollection('someCollect');
+criar
+db.dropDatabase(); deletar
+use local (usar ou criar)
+db.createCollection('post')
+db.createCollection('users')
+db.users.drop() (delete)
+
+Aula 2
+db.users.insertOne({ name: 'Igor Oliveira', password: '123', email: 'programadorbr@contato.com' })
+db.users.insertMany([{ name: 'Marcela' }, { name: 'jonas' }, { name: 'Igor' }])
+db.users.find()
+db.users.find().limit(2)
+db.users.find().limit(3).pretty()
+
+db.users.insertOne({ name: 'jose', tel: '123', email: 'programadorbr@contato.com' })
+db.users.find({ tel: '123' })
+add admin manualmente
+db.users.find({ type: 'admin' }).count()
+db.users.find().sort({ name: 1 }).pretty()
+db.users.find().sort({ name: -1 }).pretty()
+
+Aula 3
+update pelo shell
+db.users.updateOne({ name: 'Marcela', {$set: {tel: '3334444'}}})
+db.users.updateMany({}, {$set: {class: '2001'}}})
+db.users.updateMany({}, {$unset: {class: '2001'}}})
+db.users.update({ name: 'Igor' }, { name: 'Igor', password: '33333' })
+não fez nada
+db.users.update({ name: 'Igor' }, { name: 'Igor', password: '33333' }, {upsert: true})
+
+Aula 4
+db.users.updateMany({}, {$set: {visits: 0}})
+db.users.update({}, {$rename: {visits: 'views'}})
+db.users.update({name: 'jonas'}, {$inc: {views: 1}})
+
+Aula 5
+consideraçoes
+Object Relational Mapper (mongoose)
+npm mongoose
+
+código: app.js
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/links', (error, db) => {
+    error
+})
+
+continua em cod
